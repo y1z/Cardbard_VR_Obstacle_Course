@@ -28,4 +28,10 @@ public class DetectIfPlayerIsInRange : MonoBehaviour
 
         isInRange = true;
     }
+
+
+    public bool IsInRange()
+    {
+        return isInRange;
+    }
 }
