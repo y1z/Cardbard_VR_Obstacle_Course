@@ -73,39 +73,41 @@ public class Autowalk : MonoBehaviour
             isWalking = false;
         }
 
+        Transform camTransform = mainCamera.transform;
+
         // Walk when player looks below the threshold angle 
         if (walkWhenLookDown && !walkWhenTriggered && !isWalking &&
-            mainCamera.transform.eulerAngles.x >= thresholdAngle &&
-            mainCamera.transform.eulerAngles.x <= RIGHT_ANGLE)
+            camTransform.eulerAngles.x >= thresholdAngle &&
+            camTransform.eulerAngles.x <= RIGHT_ANGLE)
         {
             isWalking = true;
         }
         else if (walkWhenLookDown && !walkWhenTriggered && isWalking &&
-                 (mainCamera.transform.eulerAngles.x <= thresholdAngle ||
-                 mainCamera.transform.eulerAngles.x >= RIGHT_ANGLE))
+                 (camTransform.eulerAngles.x <= thresholdAngle ||
+                  camTransform.eulerAngles.x >= RIGHT_ANGLE))
         {
             isWalking = false;
         }
 
         // Walk when the Cardboard trigger is used and the player looks down below the threshold angle
         if (walkWhenLookDown && walkWhenTriggered && !isWalking &&
-            mainCamera.transform.eulerAngles.x >= thresholdAngle &&
+            camTransform.eulerAngles.x >= thresholdAngle &&
             Input.GetButtonDown("Fire1") &&
-            mainCamera.transform.eulerAngles.x <= RIGHT_ANGLE)
+            camTransform.eulerAngles.x <= RIGHT_ANGLE)
         {
             isWalking = true;
         }
         else if (walkWhenLookDown && walkWhenTriggered && isWalking &&
-                 mainCamera.transform.eulerAngles.x >= thresholdAngle &&
+                 camTransform.eulerAngles.x >= thresholdAngle &&
                  (Input.GetButtonDown("Fire1") ||
-                 mainCamera.transform.eulerAngles.x >= RIGHT_ANGLE))
+                  camTransform.eulerAngles.x >= RIGHT_ANGLE))
         {
             isWalking = false;
         }
 
         if (isWalking)
         {
-            Vector3 direction = new Vector3(mainCamera.transform.forward.x, 0, mainCamera.transform.forward.z).normalized * speed * Time.deltaTime;
+            Vector3 direction = new Vector3(camTransform.forward.x, 0,camTransform.forward.z).normalized * (speed * Time.deltaTime);
             Quaternion rotation = Quaternion.Euler(new Vector3(0, -transform.rotation.eulerAngles.y, 0));
             transform.Translate(rotation * direction);
         }
