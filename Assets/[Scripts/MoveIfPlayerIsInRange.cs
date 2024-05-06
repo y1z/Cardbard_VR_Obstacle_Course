@@ -27,6 +27,9 @@ public class MoveIfPlayerIsInRange : MonoBehaviour
         if (!_isInRangeScript.IsInRange())
             return;
 
+        Debug.Log("Current position = " + transform.position  );
         transform.position = _whereToMove;
+        
+        Debug.Log("After switch =" + transform.position  );
     }
 }

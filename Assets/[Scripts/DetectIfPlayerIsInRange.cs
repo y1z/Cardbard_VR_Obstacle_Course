@@ -24,8 +24,10 @@ public class DetectIfPlayerIsInRange : MonoBehaviour
     {
         float currentDistanceFromPlayer = Vector3.Distance(playerReference.transform.position, transform.position);
         if (!(currentDistanceFromPlayer < minimumRange))
+        {
+            isInRange = false; 
             return;
-
+        }
         isInRange = true;
     }
 
