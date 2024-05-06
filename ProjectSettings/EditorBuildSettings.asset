@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Samples/Google Cardboard XR Plugin for Unity/1.24.0/Hello Cardboard/Scenes/HelloCardboardInputSystem.unity
-    guid: 76b5898cf91253445b7d40e735b99874
+    path: Assets/Scenes/Main_Scene/Obstacle_Course.unity
+    guid: f6ad06ba06dead14ea65f35c22ca2431
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: a171de0f478917d4c891989880e2e13e, type: 2}
