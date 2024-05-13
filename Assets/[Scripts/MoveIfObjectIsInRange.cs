@@ -10,12 +10,21 @@ public class MoveIfObjectIsInRange : MonoBehaviour
     private GameObject objectToDetect;
 
     [SerializeField]
-    private Vector3 whereToMoveTo = Vector3.left * 1337.0f;
+    private Transform whereToMoveTo = null;
 
     public float range = 1.5f;
     void Start()
     {
         Debug.Assert(objectToDetect != null, "Please assign a GameObject to objectToDetect", this);
+
+        if (this.whereToMoveTo == null)
+        {
+            this.whereToMoveTo  = gameObject.AddComponent<Transform>();
+            whereToMoveTo.position = Vector3.left * 1337.0f;
+        }
+        
+        
+        
         _isObjectInRange = gameObject.AddComponent<DetectIfObjectIsInRange>();
         _isObjectInRange.objectToDetect = objectToDetect;
         _isObjectInRange.minimumDistanceFromObject = range;
@@ -30,6 +39,6 @@ public class MoveIfObjectIsInRange : MonoBehaviour
             return;
         }
 
-        transform.position = whereToMoveTo;
+        transform.position = whereToMoveTo.position;
     }
 }

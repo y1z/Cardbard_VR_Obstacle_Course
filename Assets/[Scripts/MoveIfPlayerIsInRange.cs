@@ -10,7 +10,7 @@ public class MoveIfPlayerIsInRange : MonoBehaviour
     private DetectIfPlayerIsInRange _isInRangeScript;
     
     [Tooltip("This is were the object will moved to")]
-    [SerializeField] private Vector3 _whereToMove = Vector3.left * 1337.0f;
+    [SerializeField] Transform _whereToMove = null;
 
     public float Range = 1.0f;
     
@@ -19,6 +19,12 @@ public class MoveIfPlayerIsInRange : MonoBehaviour
     {
         _isInRangeScript = gameObject.AddComponent<DetectIfPlayerIsInRange>();
         _isInRangeScript.minimumRange = Range;
+        //  
+        if (_whereToMove == null)
+        {
+            _whereToMove = gameObject.AddComponent<Transform>();
+            _whereToMove.position = Vector3.left * 1337.0f;
+        }
     }
 
     // Update is called once per frame
@@ -28,7 +34,7 @@ public class MoveIfPlayerIsInRange : MonoBehaviour
             return;
 
         Debug.Log("Current position = " + transform.position  );
-        transform.position = _whereToMove;
+        transform.position = _whereToMove.position;
         
         Debug.Log("After switch =" + transform.position  );
     }
